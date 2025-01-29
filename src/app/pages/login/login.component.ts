@@ -1,6 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AuthService } from '../../core/services/auth.service';
+import { Router } from '@angular/router';
 
 
 
@@ -13,7 +15,12 @@ import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } 
 })
 export class LoginComponent {
 form : FormGroup;
-constructor(private fb : FormBuilder){
+AuthService = inject(AuthService)
+router = inject(Router)
+
+constructor(private fb : FormBuilder,
+             
+){
   this.form= this.fb.group(
     {
       email : new FormControl('' , [Validators.required , Validators.email]),
@@ -26,6 +33,17 @@ constructor(private fb : FormBuilder){
 onSumbit(){
   if(this.form.valid){
     console.log(this.form.value)
+
+    this.AuthService.Login(this.form.value).subscribe({
+      next: (response)=>{
+        if(response.Role==='Admin'){
+        this.router.navigate(['/dashboard'])}
+        if(response.Role==='User'){
+          this.router.navigate(['/home'])
+        }
+        console.log(response)
+      }
+    })
   }
 }
 
