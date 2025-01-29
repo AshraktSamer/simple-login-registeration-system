@@ -44,8 +44,8 @@ ng serve
 
 ## Acknowledgements
 
-  . Angular for the framework.
-  . JWT for secure authentication.
+  - Angular for the framework.
+  - JWT for secure authentication.
 
 
 
