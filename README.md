@@ -19,13 +19,7 @@ Make sure you have the following installed on your local machine:
    ```bash
    git clone https://github.com/AshraktSamer/simple-login-registeration-system.git
 
-
-
-2. Navigate to the project directory:
-   ```bash
-     cd auth-jwt
-
-3. Install the required dependencies:
+2. Install the required dependencies:
    ```bash 
     npm install
 
